@@ -1,0 +1,10 @@
+import { createStore, combineReducers, Store } from 'redux';
+import todosReducer from './todosReducer';
+
+const rootReducer = combineReducers({
+  todos: todosReducer,
+});
+
+const store = createStore(rootReducer);
+
+export default store;

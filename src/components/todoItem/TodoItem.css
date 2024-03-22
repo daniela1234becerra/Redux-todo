@@ -1,0 +1,38 @@
+.list_container{
+    height: 30px;
+    width: 280px;
+    margin: 8px;
+    display: flex;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    
+}
+.todo_card{
+    display: flex;
+    width: 100%;
+    height: 25px;
+    
+}
+.todo_list{
+    width: 230px;
+    height: 40px;
+    border-radius: 5px;
+}
+.checkbox{
+    width: 22px;
+    height: 16px;
+    margin-right: 10PX;
+}
+.delete_button{
+    height: 26px;
+
+}
+.delete_button:hover{
+    background-color: rgba(196, 76, 76, 0.671);
+    cursor: pointer;
+    height: 26px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 25px;
+}
