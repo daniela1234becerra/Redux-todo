@@ -13,10 +13,15 @@ const todoSlice = createSlice({
       return state.filter(todo => todo.id !== action.payload);
     },
     toggleTodo: (state, action) => {
-      const todo = state.find(todo => todo.id === action.payload);
-      if (todo) {
-        todo.done = !todo.done;
-      }
+      const updatedState = state.map(todo => {
+        if (todo.id === action.payload) {
+          const updatedTodo = { ...todo, done: !todo.done };
+          console.log(`Tarea ${todo.id}: ${updatedTodo.done ? 'done' : 'pending'}`);
+          return updatedTodo;
+        }
+        return todo;
+      });
+      return updatedState;
     },
     deleteAllTodos: state => {
       state.splice(0, state.length);
@@ -25,5 +30,4 @@ const todoSlice = createSlice({
 });
 
 export const { addTodo, deleteTodo, toggleTodo, deleteAllTodos } = todoSlice.actions;
-
-export default todoSlice;
+export default todoSlice.reducer;

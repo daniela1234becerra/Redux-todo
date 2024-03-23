@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTodo, toggleTodo } from '../../store/todo.slice';
 import './TodoItem.css'
@@ -6,13 +6,17 @@ import { LuTrash } from "react-icons/lu";
 
 const TodoItem = ({ todo }) => {
     const dispatch = useDispatch();
+    const [isChecked, setIsChecked] = useState(todo.done);
 
     const handleDelete = () => {
         dispatch(deleteTodo(todo.id));
     };
 
     const handleCheckboxChange = () => {
-        dispatch(toggleTodo(todo.id)); 
+        const newCheckedState = !isChecked;
+        setIsChecked(newCheckedState);
+        dispatch(toggleTodo(todo.id));
+        console.log(`Tarea ${todo.id}: ${newCheckedState ? 'done' : 'pending'}`);
     };
 
     return (
@@ -21,10 +25,10 @@ const TodoItem = ({ todo }) => {
                 <input
                     type='checkbox'
                     className='checkbox'
-                    checked={todo.done} 
-                    onChange={handleCheckboxChange} 
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
                 />
-                <div className='todo_list' style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+                <div className='todo_list' style={{ textDecoration: isChecked ? 'line-through' : 'none' }}>
                     {todo.title}
                 </div>
                 <button onClick={handleDelete} className='delete_button'>
