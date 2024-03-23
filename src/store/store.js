@@ -1,10 +1,29 @@
-import { createStore, combineReducers, Store } from 'redux';
-import todosReducer from './todosReducer';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-const rootReducer = combineReducers({
-  todos: todosReducer,
+const initialState = [];
+
+const todosSlice = createSlice({
+  name: 'todos',
+  initialState,
+  reducers: {
+    addTodo: (state, action) => {
+      state.push(action.payload);
+    },
+    deleteTodo: (state, action) => {
+      return state.filter(todo => todo.id !== action.payload);
+    },
+    deleteAllTodos: state => {
+      state.splice(0, state.length);
+    },
+  },
 });
 
-const store = createStore(rootReducer);
+const store = configureStore({
+  reducer: {
+    todos: todosSlice.reducer,
+  },
+});
+
+export const { addTodo, deleteTodo, deleteAllTodos } = todosSlice.actions;
 
 export default store;

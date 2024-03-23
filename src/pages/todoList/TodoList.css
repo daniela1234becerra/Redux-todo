@@ -10,3 +10,14 @@
 .container_list{
     background-color: rgba(240, 248, 255, 0.13);
 }
+.delete_all_button{
+    margin-top: 35px;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.delete_all_button:hover{
+    background-color: brown;
+    cursor: pointer;
+}
